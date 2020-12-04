@@ -3,7 +3,7 @@ set -eux
 
 HTTP_SERVER=112.124.9.243
 UBOOT_URL=https://github.com/friendlyarm/uboot-rockchip
-UBOOT_BRANCH=nanopi4-v2014.10_oreo
+UBOOT_BRANCH=nanopi4-v2017.09
 
 # hack for me
 PCNAME=`hostname`
@@ -16,15 +16,15 @@ mkdir -p tmp
 sudo rm -rf tmp/*
 
 cd tmp
-git clone ../../.git sd-fuse_rk3399
+git clone ../../.git sd-fuse_rk3399 -b kernel-5.4.y
 cd sd-fuse_rk3399
-if [ -f ../../friendlycore-arm64-images.tgz ]; then
-	tar xvzf ../../friendlycore-arm64-images.tgz
+if [ -f ../../friendlywrt-images.tgz ]; then
+	tar xvzf ../../friendlywrt-images.tgz
 else
-	wget http://${HTTP_SERVER}/dvdfiles/rk3399/images-for-eflasher/friendlycore-arm64-images.tgz
+	wget http://${HTTP_SERVER}/dvdfiles/rk3399/images-for-eflasher/friendlywrt-images.tgz
+	tar xzf friendlywrt-images.tgz
 fi
 
 git clone ${UBOOT_URL} --depth 1 -b ${UBOOT_BRANCH} uboot-rk3399
-
-UBOOT_SRC=$PWD/uboot-rk3399 ./build-uboot.sh friendlycore-arm64
-sudo ./mk-sd-image.sh friendlycore-arm64
+UBOOT_SRC=$PWD/uboot-rk3399 ./build-uboot.sh friendlywrt
+sudo ./mk-sd-image.sh friendlywrt

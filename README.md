@@ -129,3 +129,29 @@ re-generate new firmware:
 ```
 ./mk-sd-image.sh friendlywrt
 ```
+
+### Custom rootfs for friendlywrt
+Use FriendlyCore as an example:
+```
+git clone https://github.com/friendlyarm/sd-fuse_rk3399.git -b kernel-5.4.y
+cd sd-fuse_rk3399
+
+wget http://112.124.9.243/dvdfiles/RK3399/rootfs/rootfs-friendlywrt.tgz
+tar xzf rootfs-friendlywrt.tgz
+```
+Now,  change something under rootfs directory, like this:
+```
+echo hello > friendlywrt/rootfs/root/welcome.txt
+```
+Re-make rootfs.img:
+```
+./build-rootfs-img.sh friendlywrt/rootfs friendlywrt
+```
+Make sdboot image:
+```
+./mk-sd-image.sh friendlywrt
+```
+or make sd-to-emmc image (eflasher rom):
+```
+./mk-emmc-image.sh friendlywrt
+```

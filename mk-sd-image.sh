@@ -59,7 +59,7 @@ if [ $# -eq 2 ]; then
     friendlycore-arm64)
         RAW_SIZE_MB=7800 ;;
     friendlywrt)
-        RAW_SIZE_MB=1000 ;;
+        RAW_SIZE_MB=2000 ;;
     friendlydesktop-arm64)
         RAW_SIZE_MB=7800 ;;
     friendlycore-focal-arm64)
@@ -82,7 +82,7 @@ else
 		RAW_SIZE_MB=7800 ;;
 	friendlywrt)
 		RAW_FILE=${SOC}-sd-friendlywrt-5.4-arm64-$(date +%Y%m%d).img
-		RAW_SIZE_MB=1000 ;;
+		RAW_SIZE_MB=2000 ;;
 	friendlydesktop-arm64)
 		RAW_FILE=${SOC}-sd-friendlydesktop-bionic-4.4-arm64-$(date +%Y%m%d).img
 		RAW_SIZE_MB=7800 ;;
